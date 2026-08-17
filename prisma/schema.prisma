@@ -1,0 +1,41 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                 String   @id @default(uuid())
+  username           String   @unique
+  email              String?  @unique
+  passwordHash       String
+  role               String   @default("SUPER_ADMIN") // SUPER_ADMIN, UNIVERSITY_ADMIN, FACULTY, STUDENT
+  name               String
+  mustChangePassword Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model University {
+  id        String            @id @default(uuid())
+  name      String
+  place     String
+  details   String?
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  admins    UniversityAdmin[]
+}
+
+model UniversityAdmin {
+  id           String     @id @default(uuid())
+  name         String
+  email        String     @unique // Email ID acts as login ID
+  passwordHash String
+  universityId String
+  university   University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
