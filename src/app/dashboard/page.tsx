@@ -115,7 +115,7 @@ export default function SuperAdminDashboard() {
           <Card className="shadow-sm border border-indigo-100 rounded-2xl bg-white">
             <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <Typography variant="overline" className="text-indigo-900 font-bold tracking-wider">
+                <Typography variant="overline" sx={{ color: '#475569 !important', fontWeight: 800, letterSpacing: '0.05em' }}>
                   Total Universities
                 </Typography>
                 <Typography variant="h3" className="font-extrabold text-slate-900 mt-1">
@@ -131,7 +131,7 @@ export default function SuperAdminDashboard() {
           <Card className="shadow-sm border border-sky-100 rounded-2xl bg-white">
             <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <Typography variant="overline" className="text-sky-900 font-bold tracking-wider">
+                <Typography variant="overline" sx={{ color: '#475569 !important', fontWeight: 800, letterSpacing: '0.05em' }}>
                   University Admins
                 </Typography>
                 <Typography variant="h3" className="font-extrabold text-slate-900 mt-1">
@@ -147,7 +147,7 @@ export default function SuperAdminDashboard() {
           <Card className="shadow-sm border border-purple-100 rounded-2xl bg-white">
             <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <Typography variant="overline" className="text-purple-900 font-bold tracking-wider">
+                <Typography variant="overline" sx={{ color: '#475569 !important', fontWeight: 800, letterSpacing: '0.05em' }}>
                   System User Roles
                 </Typography>
                 <Typography variant="h3" className="font-extrabold text-slate-900 mt-1">
