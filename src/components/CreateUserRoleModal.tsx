@@ -32,7 +32,7 @@ export default function CreateUserRoleModal({ open, onClose }: Props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [role, setRole] = useState('FACULTY');
+  const [role, setRole] = useState('INSTITUTE_ADMIN');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -69,7 +69,7 @@ export default function CreateUserRoleModal({ open, onClose }: Props) {
         setName('');
         setEmail('');
         setPassword('');
-        setRole('FACULTY');
+        setRole('INSTITUTE_ADMIN');
         onClose();
       }, 1200);
     } catch (err: any) {
@@ -80,7 +80,7 @@ export default function CreateUserRoleModal({ open, onClose }: Props) {
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogTitle className="font-extrabold text-indigo-950 border-b border-slate-100">
-        Create User & Assign Role
+        Create User & Assign System Role
       </DialogTitle>
       <form onSubmit={handleSubmit}>
         <DialogContent className="space-y-4 pt-4">
@@ -96,8 +96,10 @@ export default function CreateUserRoleModal({ open, onClose }: Props) {
               onChange={(e) => setRole(e.target.value)}
               disabled={isLoading}
             >
-              <MenuItem value="SUPER_ADMIN">SUPER_ADMIN (Full System Access)</MenuItem>
+              <MenuItem value="SUPER_ADMIN">SUPER_ADMIN (Full System Control)</MenuItem>
               <MenuItem value="UNIVERSITY_ADMIN">UNIVERSITY_ADMIN (University Portal)</MenuItem>
+              <MenuItem value="INSTITUTE_ADMIN">INSTITUTE_ADMIN (Institute Administrator)</MenuItem>
+              <MenuItem value="TECHNICAL_COORDINATOR">TECHNICAL_COORDINATOR (Technical Coordinator)</MenuItem>
               <MenuItem value="FACULTY">FACULTY (Instructor / Course Admin)</MenuItem>
               <MenuItem value="STUDENT">STUDENT (Learner Portal)</MenuItem>
             </Select>
@@ -110,7 +112,7 @@ export default function CreateUserRoleModal({ open, onClose }: Props) {
             onChange={(e) => setName(e.target.value)}
             required
             disabled={isLoading}
-            placeholder="e.g., Prof. Alex Smith"
+            placeholder="e.g., Dr. Robert Vance"
           />
 
           <TextField
@@ -120,7 +122,7 @@ export default function CreateUserRoleModal({ open, onClose }: Props) {
             onChange={(e) => setUsername(e.target.value)}
             required
             disabled={isLoading}
-            placeholder="e.g., alexsmith"
+            placeholder="e.g., robertvance"
           />
 
           <TextField
@@ -130,7 +132,7 @@ export default function CreateUserRoleModal({ open, onClose }: Props) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={isLoading}
-            placeholder="e.g., alex@lms.edu"
+            placeholder="e.g., robert@institute.edu"
           />
 
           <TextField
