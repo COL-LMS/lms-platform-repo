@@ -27,7 +27,7 @@ import {
   School,
   PersonAdd,
   Add,
-  Lock,
+  Settings,
   Logout,
   Business,
   SupervisorAccount,
@@ -37,7 +37,6 @@ import {
   useGetUniversitiesQuery,
   useGetUniversityAdminsQuery,
 } from '@/store/api/lmsApi';
-import ChangePasswordModal from '@/components/ChangePasswordModal';
 import CreateUniversityModal from '@/components/CreateUniversityModal';
 import CreateUniversityAdminModal from '@/components/CreateUniversityAdminModal';
 import ResetAdminPasswordModal from '@/components/ResetAdminPasswordModal';
@@ -46,7 +45,6 @@ import { Key } from '@mui/icons-material';
 export default function SuperAdminDashboard() {
   const router = useRouter();
   const [tabValue, setTabValue] = useState(0);
-  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const [createUniOpen, setCreateUniOpen] = useState(false);
   const [createAdminOpen, setCreateAdminOpen] = useState(false);
   const [resetAdminModal, setResetAdminModal] = useState<{ id: string; name: string; email: string } | null>(null);
@@ -99,11 +97,11 @@ export default function SuperAdminDashboard() {
             <Button
               variant="outlined"
               size="small"
-              startIcon={<Lock fontSize="small" />}
-              onClick={() => setPasswordModalOpen(true)}
+              startIcon={<Settings fontSize="small" />}
+              onClick={() => router.push('/dashboard/settings')}
               className="text-rose-100 border-rose-700 hover:bg-rose-800 normal-case"
             >
-              Change Password
+              Settings
             </Button>
 
             <Button
@@ -307,7 +305,6 @@ export default function SuperAdminDashboard() {
       </Container>
 
       {/* Modals */}
-      <ChangePasswordModal open={passwordModalOpen} onClose={() => setPasswordModalOpen(false)} />
       <CreateUniversityModal open={createUniOpen} onClose={() => setCreateUniOpen(false)} />
       <CreateUniversityAdminModal open={createAdminOpen} onClose={() => setCreateAdminOpen(false)} />
       <ResetAdminPasswordModal
