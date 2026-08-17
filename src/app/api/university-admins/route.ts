@@ -18,6 +18,8 @@ export async function GET() {
             id: true,
             name: true,
             place: true,
+            url: true,
+            logo: true,
           },
         },
       },
@@ -72,6 +74,9 @@ export async function POST(request: Request) {
           select: {
             id: true,
             name: true,
+            place: true,
+            url: true,
+            logo: true,
           },
         },
       },
