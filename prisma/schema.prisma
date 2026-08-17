@@ -15,6 +15,7 @@ model User {
   role               String   @default("SUPER_ADMIN") // SUPER_ADMIN, UNIVERSITY_ADMIN, FACULTY, STUDENT
   name               String
   mustChangePassword Boolean  @default(false)
+  status             String   @default("ACTIVE") // ACTIVE, INACTIVE
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 }
@@ -24,6 +25,7 @@ model University {
   name      String
   place     String
   details   String?
+  status    String            @default("ACTIVE") // ACTIVE, INACTIVE
   createdAt DateTime          @default(now())
   updatedAt DateTime          @updatedAt
   admins    UniversityAdmin[]
@@ -34,6 +36,7 @@ model UniversityAdmin {
   name         String
   email        String     @unique // Email ID acts as login ID
   passwordHash String
+  status       String     @default("ACTIVE") // ACTIVE, INACTIVE
   universityId String
   university   University @relation(fields: [universityId], references: [id], onDelete: Cascade)
   createdAt    DateTime   @default(now())

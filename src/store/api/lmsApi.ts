@@ -5,25 +5,39 @@ export interface University {
   name: string;
   place: string;
   details?: string;
+  status: string;
   createdAt: string;
+  admins?: Array<{ id: string; name: string; email: string }>;
 }
 
 export interface UniversityAdmin {
   id: string;
   name: string;
   email: string;
+  status: string;
   universityId: string;
   university?: {
     id: string;
     name: string;
+    place?: string;
   };
+  createdAt: string;
+}
+
+export interface User {
+  id: string;
+  username: string;
+  email?: string;
+  name: string;
+  role: string;
+  status: string;
   createdAt: string;
 }
 
 export const lmsApi = createApi({
   reducerPath: 'lmsApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
-  tagTypes: ['University', 'UniversityAdmin', 'Auth'],
+  tagTypes: ['University', 'UniversityAdmin', 'User', 'Auth'],
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (credentials: { username: string; passwordHash: string }) => ({
@@ -44,6 +58,7 @@ export const lmsApi = createApi({
       query: () => '/auth/me',
       providesTags: ['Auth'],
     }),
+    // Universities
     getUniversities: builder.query<University[], void>({
       query: () => '/universities',
       providesTags: ['University'],
@@ -56,6 +71,15 @@ export const lmsApi = createApi({
       }),
       invalidatesTags: ['University'],
     }),
+    updateUniversity: builder.mutation<University, { id: string; name: string; place: string; details?: string; status?: string }>({
+      query: ({ id, ...body }) => ({
+        url: `/universities/${id}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['University', 'UniversityAdmin'],
+    }),
+    // University Admins
     getUniversityAdmins: builder.query<UniversityAdmin[], void>({
       query: () => '/university-admins',
       providesTags: ['UniversityAdmin'],
@@ -66,7 +90,15 @@ export const lmsApi = createApi({
         method: 'POST',
         body,
       }),
-      invalidatesTags: ['UniversityAdmin'],
+      invalidatesTags: ['UniversityAdmin', 'University'],
+    }),
+    updateUniversityAdmin: builder.mutation<UniversityAdmin, { id: string; name: string; email: string; universityId: string; status?: string }>({
+      query: ({ id, ...body }) => ({
+        url: `/university-admins/${id}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['UniversityAdmin', 'University'],
     }),
     resetAdminPassword: builder.mutation<{ success: boolean; message: string }, { adminId: string; newPassword: string }>({
       query: (body) => ({
@@ -75,6 +107,27 @@ export const lmsApi = createApi({
         body,
       }),
       invalidatesTags: ['UniversityAdmin'],
+    }),
+    // User Roles Management
+    getUsers: builder.query<User[], void>({
+      query: () => '/users',
+      providesTags: ['User'],
+    }),
+    createUser: builder.mutation<User, { username: string; name: string; email?: string; password: string; role: string }>({
+      query: (body) => ({
+        url: '/users',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['User'],
+    }),
+    updateUser: builder.mutation<User, { id: string; name?: string; role?: string; status?: string }>({
+      query: ({ id, ...body }) => ({
+        url: `/users/${id}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['User'],
     }),
   }),
 });
@@ -85,8 +138,12 @@ export const {
   useGetMeQuery,
   useGetUniversitiesQuery,
   useCreateUniversityMutation,
+  useUpdateUniversityMutation,
   useGetUniversityAdminsQuery,
   useCreateUniversityAdminMutation,
+  useUpdateUniversityAdminMutation,
   useResetAdminPasswordMutation,
+  useGetUsersQuery,
+  useCreateUserMutation,
+  useUpdateUserMutation,
 } = lmsApi;
-
