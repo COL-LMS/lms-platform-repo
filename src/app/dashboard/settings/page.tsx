@@ -31,6 +31,7 @@ import {
   VpnKey,
 } from '@mui/icons-material';
 import { useGetMeQuery } from '@/store/api/lmsApi';
+import Header from '@/components/Header';
 
 export default function SettingsPage() {
   const router = useRouter();
@@ -89,40 +90,8 @@ export default function SettingsPage() {
 
   return (
     <Box className="min-h-screen bg-slate-100/70 pb-16">
-      {/* Header */}
-      <Box className="bg-gradient-to-r from-slate-950 via-indigo-950 to-blue-950 text-white shadow-lg">
-        <Container maxWidth="xl" className="py-4 flex justify-between items-center">
-          <Box className="flex items-center space-x-3">
-            <Button
-              variant="outlined"
-              size="small"
-              startIcon={<ArrowBack />}
-              onClick={() => router.push('/dashboard')}
-              className="text-slate-100 border-indigo-700/60 hover:bg-indigo-900/40 normal-case mr-2"
-            >
-              Back to Dashboard
-            </Button>
-            <div className="p-2 bg-white/10 rounded-xl text-sky-300 border border-white/10 backdrop-blur">
-              <Security style={{ fontSize: 28 }} />
-            </div>
-            <div>
-              <Typography variant="h6" className="font-extrabold text-white leading-tight tracking-wide">
-                Account & System Settings
-              </Typography>
-              <Typography variant="caption" className="text-slate-300">
-                Manage your credentials and security preferences
-              </Typography>
-            </div>
-          </Box>
-
-          <Box className="flex items-center space-x-2 bg-white/10 px-3 py-1.5 rounded-full border border-white/15 backdrop-blur">
-            <Avatar className="w-7 h-7 bg-indigo-600 text-xs font-bold">SA</Avatar>
-            <Typography variant="body2" className="font-medium text-slate-100">
-              {userData?.user?.name || 'Super Admin'}
-            </Typography>
-          </Box>
-        </Container>
-      </Box>
+      {/* Interactive High Contrast Header */}
+      <Header user={userData?.user} />
 
       {/* Main Content */}
       <Container maxWidth="lg" className="mt-8">

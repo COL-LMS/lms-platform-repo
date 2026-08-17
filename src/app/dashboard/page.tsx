@@ -47,6 +47,7 @@ import {
   UniversityAdmin,
   User,
 } from '@/store/api/lmsApi';
+import Header from '@/components/Header';
 import CreateUniversityModal from '@/components/CreateUniversityModal';
 import ManageUniversityModal from '@/components/ManageUniversityModal';
 import CreateUniversityAdminModal from '@/components/CreateUniversityAdminModal';
@@ -104,53 +105,8 @@ export default function SuperAdminDashboard() {
 
   return (
     <Box className="min-h-screen bg-slate-100/70 pb-12">
-      {/* Header */}
-      <Box className="bg-gradient-to-r from-slate-950 via-indigo-950 to-blue-950 text-white shadow-lg">
-        <Container maxWidth="xl" className="py-4 flex justify-between items-center">
-          <Box className="flex items-center space-x-3">
-            <div className="p-2.5 bg-white/10 rounded-xl text-sky-300 border border-white/10 backdrop-blur">
-              <School style={{ fontSize: 32 }} />
-            </div>
-            <div>
-              <Typography variant="h6" className="font-extrabold text-white leading-tight tracking-wide">
-                LMS Super Admin Governance Portal
-              </Typography>
-              <Typography variant="caption" className="text-slate-300">
-                System Management & Role Administration
-              </Typography>
-            </div>
-          </Box>
-
-          <Box className="flex items-center space-x-3">
-            <Box className="flex items-center space-x-2 bg-white/10 px-3 py-1.5 rounded-full border border-white/15 backdrop-blur">
-              <Avatar className="w-7 h-7 bg-indigo-600 text-xs font-bold">SA</Avatar>
-              <Typography variant="body2" className="font-medium text-slate-100">
-                {userData?.user?.name || 'Super Admin'} (sadmin)
-              </Typography>
-            </Box>
-
-            <Button
-              variant="outlined"
-              size="small"
-              startIcon={<Settings fontSize="small" />}
-              onClick={() => router.push('/dashboard/settings')}
-              className="text-slate-100 border-indigo-700/60 hover:bg-indigo-900/40 normal-case"
-            >
-              Settings
-            </Button>
-
-            <Button
-              variant="contained"
-              size="small"
-              startIcon={<Logout fontSize="small" />}
-              onClick={handleLogout}
-              className="normal-case bg-indigo-700 hover:bg-indigo-800 text-white"
-            >
-              Logout
-            </Button>
-          </Box>
-        </Container>
-      </Box>
+      {/* Interactive High Contrast Header */}
+      <Header user={userData?.user} />
 
       {/* Main Content */}
       <Container maxWidth="xl" className="mt-8">
