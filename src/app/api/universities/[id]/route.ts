@@ -13,7 +13,7 @@ export async function PUT(
     }
 
     const { id } = await params;
-    const { name, place, details, status } = await request.json();
+    const { name, place, url, logo, details, status } = await request.json();
 
     if (!name || !place) {
       return NextResponse.json(
@@ -27,6 +27,8 @@ export async function PUT(
       data: {
         name,
         place,
+        url: url || null,
+        logo: logo || null,
         details,
         status,
       },

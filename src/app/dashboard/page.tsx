@@ -37,6 +37,8 @@ import {
   Tune,
   AdminPanelSettings,
   Badge,
+  Language,
+  OpenInNew,
 } from '@mui/icons-material';
 import {
   useGetMeQuery,
@@ -86,7 +88,8 @@ export default function SuperAdminDashboard() {
   const filteredUniversities = universities.filter(
     (u) =>
       u.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      u.place.toLowerCase().includes(searchQuery.toLowerCase())
+      u.place.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (u.url || '').toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const filteredAdmins = admins.filter(
@@ -256,7 +259,36 @@ export default function SuperAdminDashboard() {
                   ) : (
                     filteredUniversities.map((uni: any) => (
                       <TableRow key={uni.id} hover>
-                        <TableCell className="font-bold text-slate-800">{uni.name}</TableCell>
+                        <TableCell>
+                          <Box className="flex items-center space-x-3">
+                            <Avatar
+                              src={uni.logo}
+                              alt={uni.name}
+                              className="w-10 h-10 bg-indigo-100 text-indigo-800 font-bold border border-indigo-200"
+                            >
+                              <Business fontSize="small" />
+                            </Avatar>
+                            <div>
+                              <Typography className="font-bold text-slate-800 leading-tight">
+                                {uni.name}
+                              </Typography>
+                              {uni.url ? (
+                                <a
+                                  href={uni.url.startsWith('http') ? uni.url : `https://${uni.url}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-xs text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center space-x-1 mt-0.5"
+                                >
+                                  <Language style={{ fontSize: 13 }} />
+                                  <span>{uni.url.replace(/^https?:\/\//, '')}</span>
+                                  <OpenInNew style={{ fontSize: 11 }} />
+                                </a>
+                              ) : (
+                                <span className="text-[11px] text-slate-400">No website URL</span>
+                              )}
+                            </div>
+                          </Box>
+                        </TableCell>
                         <TableCell className="text-slate-600 font-medium">{uni.place}</TableCell>
                         <TableCell>
                           <Chip

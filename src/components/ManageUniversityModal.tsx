@@ -18,7 +18,10 @@ import {
   Box,
   Chip,
   Divider,
+  Avatar,
+  InputAdornment,
 } from '@mui/material';
+import { Language, Image as ImageIcon, Business } from '@mui/icons-material';
 import { useUpdateUniversityMutation, University } from '@/store/api/lmsApi';
 
 interface Props {
@@ -30,6 +33,8 @@ interface Props {
 export default function ManageUniversityModal({ open, university, onClose }: Props) {
   const [name, setName] = useState('');
   const [place, setPlace] = useState('');
+  const [url, setUrl] = useState('');
+  const [logo, setLogo] = useState('');
   const [details, setDetails] = useState('');
   const [status, setStatus] = useState('ACTIVE');
   const [error, setError] = useState('');
@@ -41,6 +46,8 @@ export default function ManageUniversityModal({ open, university, onClose }: Pro
     if (university) {
       setName(university.name || '');
       setPlace(university.place || '');
+      setUrl(university.url || '');
+      setLogo(university.logo || '');
       setDetails(university.details || '');
       setStatus(university.status || 'ACTIVE');
       setError('');
@@ -60,6 +67,8 @@ export default function ManageUniversityModal({ open, university, onClose }: Pro
         id: university.id,
         name,
         place,
+        url,
+        logo,
         details,
         status,
       }).unwrap();
@@ -92,6 +101,21 @@ export default function ManageUniversityModal({ open, university, onClose }: Pro
           {error && <Alert severity="error">{error}</Alert>}
           {success && <Alert severity="success">{success}</Alert>}
 
+          {/* Logo Preview */}
+          <Box className="flex items-center space-x-4 bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <Avatar
+              src={logo}
+              alt={name || 'University Logo'}
+              className="w-14 h-14 bg-indigo-100 text-indigo-800 border-2 border-indigo-200 font-bold"
+            >
+              <Business />
+            </Avatar>
+            <div>
+              <span className="text-xs font-bold text-slate-700 block">University Logo</span>
+              <span className="text-[11px] text-slate-500">Live preview of logo image.</span>
+            </div>
+          </Box>
+
           <TextField
             label="University Name"
             fullWidth
@@ -108,6 +132,40 @@ export default function ManageUniversityModal({ open, university, onClose }: Pro
             onChange={(e) => setPlace(e.target.value)}
             required
             disabled={isLoading}
+          />
+
+          <TextField
+            label="Website URL"
+            type="url"
+            fullWidth
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            disabled={isLoading}
+            placeholder="https://dypatil.edu"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Language className="text-indigo-600" fontSize="small" />
+                </InputAdornment>
+              ),
+            }}
+          />
+
+          <TextField
+            label="University Logo URL"
+            type="url"
+            fullWidth
+            value={logo}
+            onChange={(e) => setLogo(e.target.value)}
+            disabled={isLoading}
+            placeholder="https://example.com/logo.png"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <ImageIcon className="text-indigo-600" fontSize="small" />
+                </InputAdornment>
+              ),
+            }}
           />
 
           <FormControl fullWidth required>
@@ -128,7 +186,7 @@ export default function ManageUniversityModal({ open, university, onClose }: Pro
             label="Additional Details"
             fullWidth
             multiline
-            rows={3}
+            rows={2}
             value={details}
             onChange={(e) => setDetails(e.target.value)}
             disabled={isLoading}

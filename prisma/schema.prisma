@@ -24,6 +24,8 @@ model University {
   id        String            @id @default(uuid())
   name      String
   place     String
+  url       String?
+  logo      String?
   details   String?
   status    String            @default("ACTIVE") // ACTIVE, INACTIVE
   createdAt DateTime          @default(now())

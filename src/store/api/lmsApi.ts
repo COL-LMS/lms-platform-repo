@@ -4,6 +4,8 @@ export interface University {
   id: string;
   name: string;
   place: string;
+  url?: string;
+  logo?: string;
   details?: string;
   status: string;
   createdAt: string;
@@ -20,6 +22,8 @@ export interface UniversityAdmin {
     id: string;
     name: string;
     place?: string;
+    url?: string;
+    logo?: string;
   };
   createdAt: string;
 }
@@ -63,7 +67,7 @@ export const lmsApi = createApi({
       query: () => '/universities',
       providesTags: ['University'],
     }),
-    createUniversity: builder.mutation<University, { name: string; place: string; details?: string }>({
+    createUniversity: builder.mutation<University, { name: string; place: string; url?: string; logo?: string; details?: string }>({
       query: (body) => ({
         url: '/universities',
         method: 'POST',
@@ -71,7 +75,7 @@ export const lmsApi = createApi({
       }),
       invalidatesTags: ['University'],
     }),
-    updateUniversity: builder.mutation<University, { id: string; name: string; place: string; details?: string; status?: string }>({
+    updateUniversity: builder.mutation<University, { id: string; name: string; place: string; url?: string; logo?: string; details?: string; status?: string }>({
       query: ({ id, ...body }) => ({
         url: `/universities/${id}`,
         method: 'PUT',
