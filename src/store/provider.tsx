@@ -10,19 +10,25 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#9f1239', // Rose 800 (from login page)
-      light: '#be123c',
-      dark: '#881337',
+      main: '#3730a3', // Professional LMS Indigo 800
+      light: '#4f46e5', // Indigo 600
+      dark: '#1e1b4b', // Indigo 950
     },
     secondary: {
-      main: '#7e22ce', // Purple 700 (from signin mode)
+      main: '#0284c7', // Sky 600
+      light: '#38bdf8',
+      dark: '#0369a1',
     },
     background: {
-      default: '#fff1f2', // Soft Rose Tint background
+      default: '#f8fafc', // Clean Slate 50 background
+      paper: '#ffffff',
     },
   },
   typography: {
     fontFamily: 'inherit',
+  },
+  shape: {
+    borderRadius: 12,
   },
 });
 

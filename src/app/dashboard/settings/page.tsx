@@ -25,11 +25,9 @@ import {
   Visibility,
   VisibilityOff,
   Security,
-  Person,
   Palette,
   CheckCircle,
   Shield,
-  School,
   VpnKey,
 } from '@mui/icons-material';
 import { useGetMeQuery } from '@/store/api/lmsApi';
@@ -90,9 +88,9 @@ export default function SettingsPage() {
   };
 
   return (
-    <Box className="min-h-screen bg-rose-50/50 pb-16">
+    <Box className="min-h-screen bg-slate-100/70 pb-16">
       {/* Header */}
-      <Box className="bg-gradient-to-r from-rose-950 via-rose-900 to-pink-900 text-white shadow-lg">
+      <Box className="bg-gradient-to-r from-slate-950 via-indigo-950 to-blue-950 text-white shadow-lg">
         <Container maxWidth="xl" className="py-4 flex justify-between items-center">
           <Box className="flex items-center space-x-3">
             <Button
@@ -100,26 +98,26 @@ export default function SettingsPage() {
               size="small"
               startIcon={<ArrowBack />}
               onClick={() => router.push('/dashboard')}
-              className="text-rose-100 border-rose-700 hover:bg-rose-800 normal-case mr-2"
+              className="text-slate-100 border-indigo-700/60 hover:bg-indigo-900/40 normal-case mr-2"
             >
               Back to Dashboard
             </Button>
-            <div className="p-2 bg-white/10 rounded-xl text-pink-300 border border-white/10 backdrop-blur">
+            <div className="p-2 bg-white/10 rounded-xl text-sky-300 border border-white/10 backdrop-blur">
               <Security style={{ fontSize: 28 }} />
             </div>
             <div>
               <Typography variant="h6" className="font-extrabold text-white leading-tight tracking-wide">
                 Account & System Settings
               </Typography>
-              <Typography variant="caption" className="text-rose-200">
+              <Typography variant="caption" className="text-slate-300">
                 Manage your credentials and security preferences
               </Typography>
             </div>
           </Box>
 
-          <Box className="flex items-center space-x-2 bg-rose-900/60 px-3 py-1.5 rounded-full border border-rose-700/50 backdrop-blur">
-            <Avatar className="w-7 h-7 bg-rose-600 text-xs font-bold">SA</Avatar>
-            <Typography variant="body2" className="font-medium text-rose-100">
+          <Box className="flex items-center space-x-2 bg-white/10 px-3 py-1.5 rounded-full border border-white/15 backdrop-blur">
+            <Avatar className="w-7 h-7 bg-indigo-600 text-xs font-bold">SA</Avatar>
+            <Typography variant="body2" className="font-medium text-slate-100">
               {userData?.user?.name || 'Super Admin'}
             </Typography>
           </Box>
@@ -132,15 +130,15 @@ export default function SettingsPage() {
           {/* Left Column: Account Profile & System Status */}
           <Grid item xs={12} md={4}>
             {/* Account Card */}
-            <Card className="rounded-2xl border border-rose-100 shadow-sm bg-white overflow-hidden mb-6">
-              <Box className="bg-gradient-to-r from-rose-900 to-pink-800 p-6 text-center text-white">
-                <Avatar className="w-20 h-20 bg-rose-600 mx-auto border-4 border-white/20 shadow-md text-2xl font-bold mb-3">
+            <Card className="rounded-2xl border border-slate-200 shadow-sm bg-white overflow-hidden mb-6">
+              <Box className="bg-gradient-to-r from-slate-950 to-indigo-900 p-6 text-center text-white">
+                <Avatar className="w-20 h-20 bg-indigo-600 mx-auto border-4 border-white/20 shadow-md text-2xl font-bold mb-3">
                   SA
                 </Avatar>
                 <Typography variant="h6" className="font-bold text-white">
                   {userData?.user?.name || 'Super Admin'}
                 </Typography>
-                <Typography variant="body2" className="text-rose-200">
+                <Typography variant="body2" className="text-slate-300">
                   @{userData?.user?.username || 'sadmin'}
                 </Typography>
                 <Chip
@@ -158,7 +156,7 @@ export default function SettingsPage() {
                 <Divider />
                 <Box className="flex items-center justify-between text-sm">
                   <Typography className="text-slate-500 font-medium">Authentication</Typography>
-                  <Chip label="JWT Cookie" size="small" color="primary" variant="outlined" className="text-xs" />
+                  <Chip label="JWT Cookie" size="small" color="primary" variant="outlined" className="text-xs font-semibold" />
                 </Box>
                 <Divider />
                 <Box className="flex items-center justify-between text-sm">
@@ -172,23 +170,23 @@ export default function SettingsPage() {
             </Card>
 
             {/* System Info Card */}
-            <Card className="rounded-2xl border border-rose-100 shadow-sm bg-white p-5">
-              <Typography variant="subtitle1" className="font-bold text-rose-950 flex items-center space-x-2 mb-3">
-                <Shield className="text-rose-800" style={{ fontSize: 20 }} />
+            <Card className="rounded-2xl border border-slate-200 shadow-sm bg-white p-5">
+              <Typography variant="subtitle1" className="font-bold text-slate-900 flex items-center space-x-2 mb-3">
+                <Shield className="text-indigo-700" style={{ fontSize: 20 }} />
                 <span>Security Overview</span>
               </Typography>
               <Box className="space-y-3 text-xs text-slate-600">
-                <div className="flex items-center space-x-2 bg-rose-50 p-2.5 rounded-lg border border-rose-100">
-                  <VpnKey className="text-rose-700" style={{ fontSize: 18 }} />
+                <div className="flex items-center space-x-2 bg-indigo-50/60 p-2.5 rounded-lg border border-indigo-100">
+                  <VpnKey className="text-indigo-700" style={{ fontSize: 18 }} />
                   <span>Password hash: <strong>Bcrypt (Cost 10)</strong></span>
                 </div>
-                <div className="flex items-center space-x-2 bg-purple-50 p-2.5 rounded-lg border border-purple-100">
-                  <Security className="text-purple-700" style={{ fontSize: 18 }} />
+                <div className="flex items-center space-x-2 bg-sky-50/60 p-2.5 rounded-lg border border-sky-100">
+                  <Security className="text-sky-700" style={{ fontSize: 18 }} />
                   <span>Session expiry: <strong>7 Days (HTTP-only)</strong></span>
                 </div>
-                <div className="flex items-center space-x-2 bg-pink-50 p-2.5 rounded-lg border border-pink-100">
-                  <Palette className="text-pink-700" style={{ fontSize: 18 }} />
-                  <span>Theme: <strong>Rose / Plum / Indigo</strong></span>
+                <div className="flex items-center space-x-2 bg-blue-50/60 p-2.5 rounded-lg border border-blue-100">
+                  <Palette className="text-blue-700" style={{ fontSize: 18 }} />
+                  <span>Theme: <strong>Academic Indigo & Slate</strong></span>
                 </div>
               </Box>
             </Card>
@@ -196,14 +194,14 @@ export default function SettingsPage() {
 
           {/* Right Column: Change Password Form */}
           <Grid item xs={12} md={8}>
-            <Card className="rounded-2xl border border-rose-100 shadow-sm bg-white overflow-hidden">
-              <Box className="border-b border-rose-100 p-5 bg-rose-50/50 flex items-center justify-between">
+            <Card className="rounded-2xl border border-slate-200 shadow-sm bg-white overflow-hidden">
+              <Box className="border-b border-slate-100 p-5 bg-slate-50/70 flex items-center justify-between">
                 <Box className="flex items-center space-x-3">
-                  <div className="p-2 bg-rose-100 text-rose-800 rounded-lg">
+                  <div className="p-2 bg-indigo-100 text-indigo-800 rounded-lg">
                     <Lock style={{ fontSize: 24 }} />
                   </div>
                   <div>
-                    <Typography variant="h6" className="font-bold text-rose-950">
+                    <Typography variant="h6" className="font-bold text-slate-900">
                       Change Password
                     </Typography>
                     <Typography variant="caption" className="text-slate-500">
@@ -302,7 +300,7 @@ export default function SettingsPage() {
                       type="submit"
                       variant="contained"
                       disabled={loading}
-                      className="normal-case bg-gradient-to-r from-rose-800 to-pink-700 hover:from-rose-900 hover:to-pink-800 text-white px-6 py-2 rounded-lg font-bold shadow"
+                      className="normal-case bg-gradient-to-r from-indigo-700 to-blue-600 hover:from-indigo-800 hover:to-blue-700 text-white px-6 py-2 rounded-lg font-bold shadow"
                     >
                       {loading ? (
                         <CircularProgress size={24} color="inherit" />

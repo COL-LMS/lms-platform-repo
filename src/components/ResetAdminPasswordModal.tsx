@@ -71,11 +71,11 @@ export default function ResetAdminPasswordModal({ open, admin, onClose }: Props)
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
-      <DialogTitle className="font-bold text-slate-800">
+      <DialogTitle className="font-extrabold text-indigo-950 border-b border-slate-100">
         Reset Password for {admin?.name}
       </DialogTitle>
       <form onSubmit={handleSubmit}>
-        <DialogContent className="space-y-4 pt-2">
+        <DialogContent className="space-y-4 pt-4">
           {error && <Alert severity="error">{error}</Alert>}
           {success && <Alert severity="success">{success}</Alert>}
 
@@ -115,15 +115,15 @@ export default function ResetAdminPasswordModal({ open, admin, onClose }: Props)
             }}
           />
         </DialogContent>
-        <DialogActions className="p-4">
-          <Button onClick={onClose} disabled={isLoading} color="inherit" className="normal-case">
+        <DialogActions className="p-4 bg-slate-50 border-t border-slate-100">
+          <Button onClick={onClose} disabled={isLoading} className="text-slate-600 font-semibold normal-case">
             Cancel
           </Button>
           <Button
             type="submit"
             variant="contained"
             disabled={isLoading}
-            className="bg-amber-600 hover:bg-amber-700 normal-case font-semibold"
+            className="bg-indigo-700 hover:bg-indigo-800 normal-case font-bold px-5 py-2 rounded-lg"
           >
             {isLoading ? <CircularProgress size={20} color="inherit" /> : 'Reset Password'}
           </Button>

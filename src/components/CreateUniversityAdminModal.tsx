@@ -116,7 +116,7 @@ export default function CreateUniversityAdminModal({ open, onClose }: Props) {
 
   return (
     <Dialog open={open} onClose={handleCloseAll} maxWidth="sm" fullWidth>
-      <DialogTitle className="font-bold text-slate-800 border-b border-slate-100">
+      <DialogTitle className="font-extrabold text-indigo-950 border-b border-slate-100">
         {createdAdmin ? 'University Admin Created Successfully' : 'Add University Admin'}
       </DialogTitle>
 
@@ -158,7 +158,7 @@ export default function CreateUniversityAdminModal({ open, onClose }: Props) {
                 <Typography variant="caption" className="text-slate-500 font-semibold uppercase tracking-wider">
                   Email ID (Login ID)
                 </Typography>
-                <Typography variant="body1" className="font-mono text-sky-700 font-bold">
+                <Typography variant="body1" className="font-mono text-indigo-700 font-bold">
                   {createdAdmin.email}
                 </Typography>
               </div>
@@ -174,19 +174,19 @@ export default function CreateUniversityAdminModal({ open, onClose }: Props) {
             </Box>
           </DialogContent>
 
-          <DialogActions className="p-4 bg-slate-50 flex justify-between">
+          <DialogActions className="p-4 bg-slate-50 flex justify-between border-t border-slate-100">
             <Button
               variant="outlined"
               startIcon={<ContentCopy />}
               onClick={handleCopyCredentials}
-              className="normal-case border-slate-400 text-slate-700"
+              className="normal-case border-slate-400 text-slate-700 font-semibold"
             >
               {copied ? 'Copied to Clipboard!' : 'Copy Credentials'}
             </Button>
             <Button
               variant="contained"
               onClick={handleCloseAll}
-              className="bg-sky-600 hover:bg-sky-700 normal-case"
+              className="bg-indigo-700 hover:bg-indigo-800 normal-case font-bold px-6"
             >
               Done
             </Button>
@@ -264,15 +264,15 @@ export default function CreateUniversityAdminModal({ open, onClose }: Props) {
               }}
             />
           </DialogContent>
-          <DialogActions className="p-4 bg-slate-50">
-            <Button onClick={handleCloseAll} disabled={isLoading} color="inherit" className="normal-case">
+          <DialogActions className="p-4 bg-slate-50 border-t border-slate-100">
+            <Button onClick={handleCloseAll} disabled={isLoading} className="text-slate-600 font-semibold normal-case">
               Cancel
             </Button>
             <Button
               type="submit"
               variant="contained"
               disabled={isLoading}
-              className="bg-sky-600 hover:bg-sky-700 normal-case font-semibold"
+              className="bg-gradient-to-r from-blue-700 to-sky-600 hover:from-blue-800 hover:to-sky-700 normal-case font-bold px-5 py-2 rounded-lg"
             >
               {isLoading ? <CircularProgress size={20} color="inherit" /> : 'Create Admin & Set Password'}
             </Button>
@@ -282,4 +282,3 @@ export default function CreateUniversityAdminModal({ open, onClose }: Props) {
     </Dialog>
   );
 }
-

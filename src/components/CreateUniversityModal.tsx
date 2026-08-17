@@ -43,9 +43,9 @@ export default function CreateUniversityModal({ open, onClose }: Props) {
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle className="font-bold text-slate-800">Add New University</DialogTitle>
+      <DialogTitle className="font-extrabold text-indigo-950 border-b border-indigo-50 pb-3">Add New University</DialogTitle>
       <form onSubmit={handleSubmit}>
-        <DialogContent className="space-y-4 pt-2">
+        <DialogContent className="space-y-4 pt-4">
           {error && <Alert severity="error">{error}</Alert>}
 
           <TextField
@@ -79,15 +79,15 @@ export default function CreateUniversityModal({ open, onClose }: Props) {
             placeholder="Brief description or accreditation info..."
           />
         </DialogContent>
-        <DialogActions className="p-4">
-          <Button onClick={onClose} disabled={isLoading} color="inherit">
+        <DialogActions className="p-4 border-t border-slate-100">
+          <Button onClick={onClose} disabled={isLoading} className="text-slate-600 font-semibold">
             Cancel
           </Button>
           <Button
             type="submit"
             variant="contained"
             disabled={isLoading}
-            className="bg-sky-600 hover:bg-sky-700"
+            className="bg-gradient-to-r from-indigo-700 to-blue-600 hover:from-indigo-800 hover:to-blue-700 text-white font-bold px-5 py-2 rounded-lg"
           >
             {isLoading ? <CircularProgress size={20} color="inherit" /> : 'Create University'}
           </Button>

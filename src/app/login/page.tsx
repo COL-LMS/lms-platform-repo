@@ -17,6 +17,7 @@ import {
   VisibilityOff,
   PersonOutlined,
   LockOutlined,
+  School,
 } from '@mui/icons-material';
 
 export default function LoginPage() {
@@ -58,36 +59,44 @@ export default function LoginPage() {
 
   return (
     <Box className="min-h-screen bg-slate-100 flex items-center justify-center p-4 transition-colors duration-500">
-      {/* Outer Login Container Card matching image design */}
+      {/* Outer Login Container Card */}
       <Box className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[520px] relative border border-slate-200">
         
-        {/* LEFT PANEL - Dynamic Layered Geometric Theme (Rose/Plum vs Indigo/Purple) */}
+        {/* LEFT PANEL - Academic Navy / Royal Indigo Theme */}
         <Box
           className={`w-full md:w-5/12 relative flex flex-col justify-center p-8 overflow-hidden min-h-[240px] md:min-h-full transition-all duration-700 ${
             isLoginMode
-              ? 'bg-gradient-to-br from-rose-900 via-pink-800 to-rose-700'
-              : 'bg-gradient-to-br from-indigo-950 via-purple-900 to-violet-700'
+              ? 'bg-gradient-to-br from-slate-950 via-indigo-950 to-blue-900'
+              : 'bg-gradient-to-br from-indigo-950 via-blue-900 to-sky-800'
           }`}
         >
           {/* Layered Diagonal Background Shapes */}
           <div
             className={`absolute -top-12 -left-12 w-64 h-64 rounded-full transform -rotate-45 pointer-events-none transition-colors duration-700 ${
-              isLoginMode ? 'bg-rose-950/40' : 'bg-indigo-950/50'
+              isLoginMode ? 'bg-indigo-950/60' : 'bg-blue-950/60'
             }`}
           />
           <div
             className={`absolute top-1/4 -left-20 w-80 h-96 transform rotate-45 pointer-events-none transition-colors duration-700 ${
-              isLoginMode ? 'bg-pink-900/30' : 'bg-purple-950/40'
+              isLoginMode ? 'bg-blue-950/40' : 'bg-sky-950/50'
             }`}
           />
           <div
             className={`absolute -bottom-16 -right-16 w-64 h-64 rounded-full transform pointer-events-none transition-colors duration-700 ${
-              isLoginMode ? 'bg-rose-600/30' : 'bg-violet-500/30'
+              isLoginMode ? 'bg-indigo-600/30' : 'bg-sky-500/30'
             }`}
           />
 
           {/* Interactive Floating Tabs on Left Panel */}
           <div className="relative z-10 space-y-4">
+            {/* LMS Portal Logo Header */}
+            <div className="flex items-center space-x-2 text-white mb-6">
+              <div className="p-2 bg-white/10 rounded-xl border border-white/20">
+                <School style={{ fontSize: 26 }} className="text-sky-300" />
+              </div>
+              <span className="font-extrabold tracking-wider text-base">LMS PORTAL</span>
+            </div>
+
             {/* LOGIN TAB */}
             <div className="flex items-center">
               <button
@@ -95,7 +104,7 @@ export default function LoginPage() {
                 onClick={() => setMode('login')}
                 className={`font-extrabold text-sm px-7 py-3 rounded-r-full shadow-lg tracking-wider transform translate-x-[-32px] flex items-center space-x-2 transition-all duration-300 ${
                   isLoginMode
-                    ? 'bg-white text-rose-950 shadow-rose-950/40 scale-105 border-y border-r border-rose-100'
+                    ? 'bg-white text-indigo-950 shadow-indigo-950/50 scale-105 border-y border-r border-indigo-100'
                     : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
                 }`}
               >
@@ -110,7 +119,7 @@ export default function LoginPage() {
                 onClick={() => setMode('signin')}
                 className={`font-extrabold text-sm px-7 py-3 rounded-r-full tracking-wider transform translate-x-[-32px] flex items-center space-x-2 transition-all duration-300 ${
                   !isLoginMode
-                    ? 'bg-white text-indigo-950 shadow-lg shadow-indigo-950/40 scale-105 border-y border-r border-indigo-100'
+                    ? 'bg-white text-blue-950 shadow-lg shadow-blue-950/50 scale-105 border-y border-r border-blue-100'
                     : 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white'
                 }`}
               >
@@ -119,7 +128,7 @@ export default function LoginPage() {
             </div>
 
             <div className="pl-4 pt-2">
-              <p className="text-white/70 text-xs max-w-[200px]">
+              <p className="text-slate-300 text-xs max-w-[200px]">
                 {isLoginMode
                   ? 'Access the Learning Management System Portal'
                   : 'Welcome back! Sign in to continue your portal session'}
@@ -128,16 +137,16 @@ export default function LoginPage() {
           </div>
         </Box>
 
-        {/* RIGHT PANEL - Clean Form Area with Dynamic Theme Accents */}
+        {/* RIGHT PANEL - Clean Form Area */}
         <Box className="w-full md:w-7/12 bg-white flex flex-col justify-between p-8 md:p-12 relative">
           <div>
-            {/* Top User Avatar Icon with Theme Transition */}
+            {/* Top User Avatar Icon */}
             <div className="flex flex-col items-center mb-6">
               <div
                 className={`w-20 h-20 rounded-full flex items-center justify-center shadow-lg mb-3 border-2 border-white transition-all duration-700 ${
                   isLoginMode
-                    ? 'bg-gradient-to-tr from-rose-900 via-pink-700 to-rose-500 shadow-rose-900/20'
-                    : 'bg-gradient-to-tr from-indigo-950 via-purple-800 to-violet-600 shadow-purple-900/20'
+                    ? 'bg-gradient-to-tr from-slate-950 via-indigo-900 to-blue-600 shadow-indigo-900/20'
+                    : 'bg-gradient-to-tr from-indigo-950 via-blue-800 to-sky-600 shadow-sky-900/20'
                 }`}
               >
                 <PersonOutlined className="text-white" style={{ fontSize: 44 }} />
@@ -146,7 +155,7 @@ export default function LoginPage() {
                 variant="h5"
                 component="h1"
                 className={`font-extrabold tracking-wider text-xl uppercase transition-colors duration-500 ${
-                  isLoginMode ? 'text-rose-900' : 'text-indigo-950'
+                  isLoginMode ? 'text-indigo-950' : 'text-blue-950'
                 }`}
               >
                 {isLoginMode ? 'LOGIN' : 'SIGN IN'}
@@ -180,10 +189,10 @@ export default function LoginPage() {
                 sx={{
                   '& .MuiInput-underline:before': { borderBottomColor: '#cbd5e1' },
                   '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-                    borderBottomColor: isLoginMode ? '#9f1239' : '#4338ca',
+                    borderBottomColor: '#3730a3',
                   },
                   '& .MuiInput-underline:after': {
-                    borderBottomColor: isLoginMode ? '#881337' : '#312e81',
+                    borderBottomColor: '#1e1b4b',
                   },
                 }}
               />
@@ -219,10 +228,10 @@ export default function LoginPage() {
                 sx={{
                   '& .MuiInput-underline:before': { borderBottomColor: '#cbd5e1' },
                   '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-                    borderBottomColor: isLoginMode ? '#9f1239' : '#4338ca',
+                    borderBottomColor: '#3730a3',
                   },
                   '& .MuiInput-underline:after': {
-                    borderBottomColor: isLoginMode ? '#881337' : '#312e81',
+                    borderBottomColor: '#1e1b4b',
                   },
                 }}
               />
@@ -234,8 +243,8 @@ export default function LoginPage() {
                   onClick={() => alert('Default Super Admin credentials: username "sadmin", password "123456"')}
                   className={`text-xs font-semibold transition-colors ${
                     isLoginMode
-                      ? 'text-pink-700 hover:text-rose-900'
-                      : 'text-purple-700 hover:text-indigo-900'
+                      ? 'text-indigo-700 hover:text-indigo-900'
+                      : 'text-blue-700 hover:text-blue-900'
                   }`}
                 >
                   Forgot Password?
@@ -247,8 +256,8 @@ export default function LoginPage() {
                   disabled={loading}
                   className={`text-white font-bold px-8 py-2.5 rounded-full shadow-md normal-case tracking-wider text-sm transition-all duration-500 ${
                     isLoginMode
-                      ? 'bg-gradient-to-r from-rose-800 to-pink-700 hover:from-rose-900 hover:to-pink-800 shadow-rose-900/30'
-                      : 'bg-gradient-to-r from-indigo-900 to-purple-700 hover:from-indigo-950 hover:to-purple-800 shadow-indigo-900/30'
+                      ? 'bg-gradient-to-r from-indigo-700 to-blue-600 hover:from-indigo-800 hover:to-blue-700 shadow-indigo-900/30'
+                      : 'bg-gradient-to-r from-blue-700 to-sky-600 hover:from-blue-800 hover:to-sky-700 shadow-blue-900/30'
                   }`}
                 >
                   {loading ? <CircularProgress size={22} color="inherit" /> : isLoginMode ? 'LOGIN' : 'SIGN IN'}
@@ -311,4 +320,3 @@ export default function LoginPage() {
     </Box>
   );
 }
-
