@@ -1,51 +1,25 @@
-# lms-platform-repo
-Centre for Online Learning - Learning Management System
-# COL LMS
+# LMS - Learning Management System
 
-## Overview
-The Centre for Online Learning (COL) LMS is an enterprise-grade Learning Management System being developed in-house to support online education.
----
-## Vision
-Develop a scalable, secure, AI-enabled LMS that can support 50,000+ learners.
----
-## Technology Stack
+A full-featured Learning Management System built with:
 
-### Frontend
-- Next.js
-- React
-- Tailwind CSS
-- Material UI
+- **Framework**: Next.js 15+ (App Router, React Server Components)
+- **UI**: Material UI (MUI v6) + Tailwind CSS
+- **State**: Redux Toolkit + RTK Query
+- **Database**: Prisma ORM + SQLite (PostgreSQL ready)
+- **Auth**: JWT with HTTP-only cookies
 
-### Backend
-- NestJS
-- Fastify
-- TypeScript
+## Getting Started
 
-### Database
-- PostgreSQL
-- Prisma ORM
-
-### Cloud
-- AWS
-- Docker
-- GitHub Actions
----
-## Repository Structure
+```bash
+npm install
+npm run db:push
+npm run db:seed
+npm run dev
 ```
-frontend/
-backend/
-database/
-docs/
-infrastructure/
-mobile/
-ai/
-```
-## Team
 
-- Frontend
-- Backend
-- Database
-- AI
-- Cloud
-- QA
-- Documentation
+Open [http://localhost:3000](http://localhost:3000)
+
+## Default Login
+
+- **Username**: `sadmin`
+- **Password**: `123456`
